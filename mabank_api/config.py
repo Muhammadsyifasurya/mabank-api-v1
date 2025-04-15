@@ -1,6 +1,10 @@
 import os
+from dotenv import load_dotenv
+
+# Load variabel dari .env
+load_dotenv()
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///revo_bank.db'  # Ganti dengan PostgreSQL jika perlu
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL") 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = "your_secret_key"  # Untuk JWT Authentication
+    SECRET_KEY = os.getenv("SECRET_KEY") 

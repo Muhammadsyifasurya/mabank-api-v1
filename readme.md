@@ -2,7 +2,8 @@
 
 ## Overview
 
-This is a RESTful API for **MaBank**, which provides functionalities for **User Management**, **Account Management**, and **Transaction Management**. The API is designed to handle secure and efficient interactions between users and the system.
+This is a RESTful API for **MaBank**, which provides functionalities for **User Management**, **Account Management**, and **Transaction Management**. The API is designed to handle secure and efficient interactions between users and the system. this is link for my documentation :
+[MaBank API Postman Documentation](https://documenter.getpostman.com/view/40816177/2sAYkDNLiK)
 
 ## Features
 
@@ -18,80 +19,61 @@ This is a RESTful API for **MaBank**, which provides functionalities for **User 
 - Flask
 - SQLAlchemy
 - Postman (for API testing)
+- dbeaver (for checking the database)
 
 ### Installation Steps
 
-1. Clone the repository:
+1. Clone the repository :
 
    ```bash
-   git clone https://github.com/your-username/revobank-api.git
+   git clone https://github.com/revou-fsse-oct24/milestone-3-Muhammadsyifasurya.git
    ```
 
-2. Navigate to the project directory:
+2. Navigate to the project directory :
 
    ```bash
-   cd revobank-api
+   cd milestone-3-Muhammadsyifasurya
    ```
 
-3. Install required dependencies:
+3. Install a virtual environment and activate it :
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Mac/Linux
+   venv\Scripts\activate  # Windows
+   ```
+
+4. Navigate to the project folder where the dependencies are located :
+
+   ```bash
+   cd mabank_api
+   ```
+
+5. Install required dependencies :
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Set up the database by running the necessary migrations:
+6. Create file .env and fill with this configurtaion :
 
    ```bash
+   DATABASE_URL=sqlite:///revo_bank.db
+   SECRET_KEY=super_secret_key
+   FLASK_ENV=development
+   FLASK_DEBUG=False
+   ```
+
+7. Initialization database with Flask-Migrate :
+
+   ```bash
+   flask db init  # just do this if 'migrations' folder is nothing
+   flask db migrate -m "Initial migration"
    flask db upgrade
    ```
 
-5. Run the application:
+8. Run the application :
+
    ```bash
-   python app.py
+   flask run
    ```
-
-## API Usage
-
-You can test the API using Postman. Below is the link to the API collection:
-
-[MaBank API Postman Collection](https://manggala-software-house.postman.co/workspace/Manggala-Software-House-Workspa~0b9c20a0-042e-47c4-bc79-d4522129b176/collection/40816177-d1bb6a5a-3f72-488c-875f-f2677e8898d1?action=share&creator=40816177)
-
-## Database Screenshot
-
-Here is a screenshot of the current database schema for the MaBank application:
-
-![Database Screenshot](assets/mabank_api.png)
-
-## Endpoints
-
-### User Management:
-
-- **POST** `/users`: Create a new user account.
-- **GET** `/users/:id`: Retrieve the profile of the currently logged-in user.
-- **PUT** `/users/:id`: Update the profile of the logged-in user.
-
-### Account Management:
-
-- **GET** `/accounts`: Retrieve a list of all accounts.
-- **GET** `/accounts/:id`: Retrieve an account by ID.
-- **POST** `/accounts`: Create a new account.
-- **PUT** `/accounts/:id`: Update an existing account.
-- **DELETE** `/accounts/:id`: Delete an account.
-
-### Transaction Management:
-
-- **GET** `/transactions`: Retrieve a list of all transactions.
-- **GET** `/transactions/:id`: Retrieve a specific transaction by ID.
-- **POST** `/transactions`: Initiate a new transaction (deposit, withdrawal, or transfer).
-
-## Error Handling
-
-The API returns appropriate HTTP status codes for each request:
-
-- **200 OK** for successful requests.
-- **201 Created** for successfully created resources.
-- **400 Bad Request** for invalid input.
-- **404 Not Found** for missing resources.
-- **500 Internal Server Error** for server-related issues.
-
----
